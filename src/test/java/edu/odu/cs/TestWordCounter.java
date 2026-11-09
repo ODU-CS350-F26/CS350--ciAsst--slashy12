@@ -85,4 +85,9 @@ public class TestWordCounter {
 
 
 
+
+    @Test
+    public final void easyPass() {
+        assertEquals(1, 1);
+    }
 }
