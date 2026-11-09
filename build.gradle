@@ -52,13 +52,18 @@ tasks.register('reports') {
     dependsOn 'build', 'copyHtml', 'copyDocs'
 }
 
-// Publish build/reports to the gh-pages branch
+// Publish to the gh-pages branch:
+//   index page at the top level, all reports under reports/
+//   (matches the ./reports/... links in src/main/html/index.md)
 gitPublish {
     repoUri = 'git@github.com:ODU-CS350-F26/CS350--ciAsst--slashy12.git'
     branch = 'gh-pages'
     commitMessage = 'Publish reports'
     contents {
-        from layout.buildDirectory.dir('reports')
+        from 'src/main/html'
+        from(layout.buildDirectory.dir('reports')) {
+            into 'reports'
+        }
     }
 }
 
